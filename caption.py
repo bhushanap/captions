@@ -7,11 +7,12 @@ from pywhispercpp.utils import *
 
 
 n_t = 4
-filename = 'test2.m4a'
-path = os.path.join(os.path.expanduser('~'), 'Downloads', filename)
+filename = 'test.mp3'
+home = os.path.expanduser('~')
+path = os.path.join(os.getcwd(), filename)
 model_name = 'base.en' #tiny.en,tiny,base,base.en,small,small.en
 spl_on_word = True
-char_len = 10
+char_len = 1
 greedy_search = True
 token_TS = True
 save = True
