@@ -1,3 +1,4 @@
+deactivate && \
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Move to the parent directory of the script
