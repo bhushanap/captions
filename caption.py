@@ -21,7 +21,7 @@ save_path = filename[:-3] + 'srt'
 print(path)
 
 model = Model(model_name,
-              models_dir = models,
+              models_dir = 'models',
             params_sampling_strategy=int(not greedy_search), 
             n_threads=1
             )
