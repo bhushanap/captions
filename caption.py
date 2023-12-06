@@ -29,9 +29,9 @@ segments = model.transcribe(path,
                             max_len=1,
                             token_timestamps = token_TS
                             )
-print(len(segments))
-for segment in segments:
-    print(segment.text)
+print(len(segments), ' tokens saved')
+#for segment in segments:
+#    print(segment.text)
 
 if save:
     output_srt(segments, save_path)
