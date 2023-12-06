@@ -1,4 +1,6 @@
-python3 -m venv caption && \
-mkdir -p models && \
-source caption/bin/activate && \
-pip install pywhispercpp
+rm -rf caption && \
+python3 -m venv caption  && \
+source caption/bin/activate  && \
+pip install pywhispercpp && \
+chmod +x run.sh && \
+. run.sh
