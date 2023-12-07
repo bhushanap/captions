@@ -1,13 +1,16 @@
 import os
 import subprocess
+import sys
 
 from pywhispercpp.model import Model
 from pywhispercpp.utils import *
 
-
-
-n_t = 4
 filename = 'test.mp3'
+if len(sys.argv)>1:
+	filename = sys.argv[1]
+	
+n_t = 4
+
 home = os.path.expanduser('~')
 path = os.path.join(os.getcwd(), filename)
 model_name = 'base.en' #tiny.en,tiny,base,base.en,small,small.en
