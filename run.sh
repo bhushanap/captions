@@ -1,13 +1,12 @@
-# Check if virtual environment is active
-if [ -n "$VIRTUAL_ENV" ]; then
-    deactivate
-fi
-
 # Get the directory of the script
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Check if the "caption" directory exists
 if [ -d "caption" ]; then
-    source caption/bin/activate
+    # Check if virtual environment is not active
+    if [ -z "$VIRTUAL_ENV" ]; then
+        source caption/bin/activate
+    fi
 else
     python3 -m venv caption && source caption/bin/activate
 fi
