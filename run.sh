@@ -1,8 +1,10 @@
-deactivate && \
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Check if virtual environment is active
+if [ -n "$VIRTUAL_ENV" ]; then
+    deactivate
+fi
 
-# Move to the parent directory of the script
-cd "$SCRIPT_DIR"/ && \
+# Get the directory of the script
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -d "caption" ]; then
     source caption/bin/activate
