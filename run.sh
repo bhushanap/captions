@@ -45,13 +45,11 @@ python3 caption.py "$audio_file" && \
 # Create ASS from SRT and apply the styles
 ffmpeg -i "$audio_filename.srt" "$audio_filename.ass" -y && \
 
+python3 ass2kar.py $audio_filename.ass config.ssa && \
+python3 pop.py $video_filename.output.ass  && \
+
 # Combine video and audio with subtitles
-ffmpeg -i "$video_file" -i "$audio_file" -vf "ass=$audio_filename.ass" -vsync 2 "$video_filename.output.mp4" -y && \
-
-python3 ass2kar.py video.ass config.ssa && \
-python3 pop.py output.ass
-
-
+ffmpeg -i "$video_file" -i "$audio_file" -vf "ass=$video_filename.output.ass" -vsync 2 "$video_filename.output.mp4" -y
 
 
 
