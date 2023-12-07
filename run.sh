@@ -14,8 +14,6 @@ fi
 # Remove all .ass, .srt, and out.mp4 files
 rm -f *.ass *.srt *output.mp4
 
-
-
 # Find the first MP4 file in the current directory and its subdirectories
 video_file=$(find . -type f -name "*.mp4" | head -n 1)
 
@@ -48,7 +46,11 @@ python3 caption.py "$audio_file" && \
 ffmpeg -i "$audio_filename.srt" "$audio_filename.ass" -y && \
 
 # Combine video and audio with subtitles
-ffmpeg -i "$video_file" -i "$audio_file" -vf "ass=$audio_filename.ass" -vsync 2 "$video_filename.output.mp4" -y
+ffmpeg -i "$video_file" -i "$audio_file" -vf "ass=$audio_filename.ass" -vsync 2 "$video_filename.output.mp4" -y && \
+
+python3 ass2kar.py video.ass config.ssa && \
+python3 pop.py output.ass
+
 
 
 
