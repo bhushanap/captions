@@ -10,7 +10,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$SCRIPT_DIR"/ && \
 
 sudo snap install yq && \
-sudo snap install ffmpeg && \
 
 # Remove existing "caption" directory
 rm -rf caption && \
