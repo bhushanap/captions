@@ -59,8 +59,8 @@ def romaji(line, l):
 
         l.text = (
             "{\\an5\\pos(%.3f,%.3f)"
-            "\\t(0,%d,0.5,\\1c&HFFFFFF&\\3c&HABABAB&\\fscx110\\fscy110)"
-            "\\t(%d,%d,1.5,\\fscx100\\fscy100\\1c%s\\3c%s)}%s"
+            "\\t(0,%d,0.5,\\1c&HFFFFFF&\\3c&HABABAB&\\fscx105\\fscy110)"
+            "\\t(%d,%d,1.5,\\fscx95\\fscy100\\1c%s\\3c%s)}%s"
             % (
                 syl.center,
                 syl.middle,

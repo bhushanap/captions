@@ -6,13 +6,8 @@ from pywhispercpp.model import Model
 from pywhispercpp.utils import *
 
 filename = 'test.mp3'
-if len(sys.argv)>1:
-	filename = sys.argv[1]
 	
 n_t = 4
-
-home = os.path.expanduser('~')
-path = os.path.join(os.getcwd(), filename)
 model_name = 'base.en' #tiny.en,tiny,base,base.en,small,small.en
 spl_on_word = True
 char_len = 1
@@ -21,7 +16,19 @@ token_TS = True
 save = True
 save_path = filename[:-3] + 'srt'
 
-print(path)
+if len(sys.argv)>1:
+  filename = sys.argv[1]
+  save_path = sys.argv[2]
+  model_name = sys.argv[3]
+  n_t = int(sys.argv[4])
+
+# print(sys.argv)
+
+home = os.path.expanduser('~')
+path = os.path.join(os.getcwd(), filename)
+  
+
+# print(path)
 
 model = Model(model_name,
               models_dir = 'models',

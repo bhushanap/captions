@@ -1,0 +1,30 @@
+# cfg.yml
+
+video_filename: 'video.mp4'
+extract_audio: true
+audio_filename: 'audio.mp3'
+resolutionx: 720
+resolutiony: 1080
+
+srt_generate:
+    save_file: 'subrip.srt'
+    model: 'base.en'
+    n_threads: 1
+
+ass_generate:
+    config_file: 'config.ssa'
+
+    rows: 3
+    row_height: 50
+    max_words_per_line: 3
+    max_chars_per_line: 10
+    max_duration_per_line: 4
+    
+    effect: 'pop'
+    font_size: 24
+    font_style: 'Arial'
+    font_color: '&H00AAFF'
+    border_color: '&H003377'
+    
+
+

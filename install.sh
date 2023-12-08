@@ -9,6 +9,9 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Move to the parent directory of the script
 cd "$SCRIPT_DIR"/ && \
 
+sudo snap install yq && \
+sudo snap install ffmpeg && \
+
 # Remove existing "caption" directory
 rm -rf caption && \
 

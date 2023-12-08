@@ -2,6 +2,15 @@ import re
 from pyonfx import *
 import sys
 
+if len(sys.argv)>1:
+    ass_path = sys.argv[1]
+    cfg_path = sys.argv[2]
+    rows = int(sys.argv[3])
+    row_height = int(sys.argv[4])
+    group = int(sys.argv[5])
+    size = int(sys.argv[6])
+    time_diff = int(sys.argv[7])
+
 def convert_to_karaoke(input_str):
     # Regular expression to extract timing and text information
     regex = r'(\d+:\d+:\d+\.\d+),(\d+:\d+:\d+\.\d+),.*?,,.*?,,(.*?)\n'
@@ -20,13 +29,17 @@ def convert_to_karaoke(input_str):
         totFlag+=1
     if byGroup:
         totFlag+=1
-    group = 4
-    size = 15
+    group = 3
+    size = 10
     time_diff = 4
     prev_time = 0
     prev_idx = 0
     lines = []
     words = []
+    rows = 3
+    row_number = 0
+    top = 400
+    row_height = 50
     for idx, match in enumerate(matches):
         start_time, end_time, text = match
         etime = Convert.time(end_time)
@@ -44,7 +57,9 @@ def convert_to_karaoke(input_str):
         if byGroup and idx-prev_idx>=group:
             nextFlag+=1
         if nextFlag>totFlag-2 and nextFlag>0:
-            lines.append(f'Dialogue: 3,{Convert.time(prev_time)},{start_time},Romaji,,0,0,400,,' \
+            vertical = top + (row_number%rows)*row_height
+            row_number +=1
+            lines.append(f'Dialogue: 3,{Convert.time(prev_time)},{start_time},Romaji,,0,0,{vertical},,' \
                         + ''.join([f'{{\\k{word[1]}}}{word[0]}' for word in words]))
             #print(words, length, idx-prev_idx, (stime-prev_time)/1000)
             prev_time = stime
@@ -69,19 +84,25 @@ def convert_to_karaoke(input_str):
                 
                 
         
-        words.append((text,dur))
+        words.append((text+' ',dur))
     
     # print(lines)
-        
-        
+    if rows>1:
+        for idx,line in enumerate(lines):
+            ahead = rows - idx%rows - 1
+            if idx+ahead>=len(lines):
+                ahead = len(lines)-1-idx
+            lines[idx] = lines[idx][:23] + lines[idx+ahead][23:33] + lines[idx][33:]
+            # ahead = rows# - idx%rows
+            # if idx+ahead>=len(lines):
+            #     ahead = len(lines)-1-idx
+            # lines[idx] = lines[idx][:23] + lines[idx+ahead][23:33] + lines[idx][33:]
         # karaoke_lines.append(f'Dialogue: {idx+3},{start_time},{end_time},Default,,0,0,0,,' + ''.join([f'{{\\k{len(word)}}}{word}' for word in text.split()]))
-    
+    # print(lines)
     return lines
 
 # Specify the path to your .ass file
-if len(sys.argv)>1:
-    ass_path = sys.argv[1]
-    cfg_path = sys.argv[2]
+
 
 save_path = 'tmp.ass'
 
